@@ -10,8 +10,12 @@ import java.util.List;
 @Service
 public class StockService {
 
+    private final StockRepository stockRepository;
+
     @Autowired
-    private StockRepository stockRepository;
+    public StockService(StockRepository stockRepository) {
+        this.stockRepository = stockRepository;
+    }
 
     public Stock addStock(Stock stock) {
         return stockRepository.save(stock);
