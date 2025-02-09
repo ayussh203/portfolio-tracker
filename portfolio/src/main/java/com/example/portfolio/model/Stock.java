@@ -10,9 +10,16 @@ public class Stock {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
     private String stockName;
+
+    @Column(nullable = false)
     private String ticker;
+
+    @Column(nullable = false)
     private Integer quantity;
+
+    @Column(nullable = false)
     private Double buyPrice;
 
     public Stock() {
@@ -25,7 +32,7 @@ public class Stock {
         this.buyPrice = buyPrice;
     }
 
-    // Getters and setters
+    // Getters and Setters
     public Long getId() {
         return id;
     }
