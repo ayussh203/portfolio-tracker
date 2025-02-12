@@ -16,7 +16,7 @@ export default function PortfolioMetrics() {
     async function fetchMetrics() {
       setLoading(true);
       try {
-        const response = await axios.get("http://localhost:8080/api/stocks/portfolio-value");
+        const response = await axios.get("http://localhost:8081/api/stocks/portfolio-value");
         setMetrics(response.data);
       } catch (error) {
         console.error("Error fetching portfolio metrics", error);

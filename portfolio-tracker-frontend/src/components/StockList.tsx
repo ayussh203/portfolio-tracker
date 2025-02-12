@@ -42,7 +42,7 @@ export default function StockList({ stocks, refreshStocks }: StockListProps) {
 
   const handleDelete = async (id: number) => {
     try {
-      await axios.delete(`http://localhost:8080/api/stocks/${id}`);
+      await axios.delete(`http://localhost:8081/api/stocks/${id}`);
       refreshStocks();
     } catch (error) {
       console.error("Error deleting stock:", error);
@@ -57,7 +57,7 @@ export default function StockList({ stocks, refreshStocks }: StockListProps) {
   const handleUpdate = async () => {
     try {
       if (editingStock) {
-        await axios.put(`http://localhost:8080/api/stocks/${editingStock.id}`, formData);
+        await axios.put(`http://localhost:8081/api/stocks/${editingStock.id}`, formData);
         setEditingStock(null);
         refreshStocks();
       }

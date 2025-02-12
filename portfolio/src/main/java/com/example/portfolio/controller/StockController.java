@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/stocks")
-@CrossOrigin(origins = "*") 
+@CrossOrigin(origins = "*")
 public class StockController {
 
     @Autowired
@@ -22,9 +22,8 @@ public class StockController {
 
     private final WebClient webClient = WebClient.create();
 
- 
     private static final String API_URL = "https://finnhub.io/api/v1/quote?symbol={symbol}&token={apiKey}";
-    private static final String API_KEY = ""; 
+    private static final String API_KEY = "";
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
@@ -45,7 +44,7 @@ public class StockController {
 
     @GetMapping
     public List<Stock> getAllStocks() {
-      
+
         return stockService.getAllStocks();
     }
 
@@ -58,22 +57,21 @@ public class StockController {
                         .uri(API_URL, stock.getTicker(), API_KEY)
                         .retrieve()
                         .bodyToMono(Map.class)
-                        .map(response -> { 
-                         
+                        .map(response -> {
+
                             Object currentPrice = response.get("c");
-                            
+
                             double price = currentPrice != null ? Double.parseDouble(currentPrice.toString()) : 0.0;
                             return price;
                         })
-                        .onErrorReturn(0.0)
-                )
+                        .onErrorReturn(0.0))
                 .collect(Collectors.toList());
 
         return Mono.zip(priceCalls, prices -> {
             double totalValue = 0.0;
             for (int i = 0; i < stocks.size(); i++) {
                 double price = (double) prices[i];
-                
+
                 totalValue += price * stocks.get(i).getQuantity();
             }
 
@@ -82,12 +80,10 @@ public class StockController {
                     .max()
                     .orElse(0.0);
 
-            
             return Map.of(
                     "totalValue", totalValue,
                     "highestBuyPrice", highestBuyPrice,
-                    "stockCount", stocks.size()
-            );
+                    "stockCount", stocks.size());
         });
     }
 }

@@ -9,7 +9,7 @@ export default function useStocks() {
   const fetchStocks = async () => {
     setLoading(true);
     try {
-      const response = await axios.get("http://localhost:8080/api/stocks");
+      const response = await axios.get("http://localhost:8081/api/stocks");
       setStocks(response.data);
     } catch (error) {
       console.error("Error fetching stocks:", error);
