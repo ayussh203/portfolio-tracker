@@ -17,7 +17,7 @@ export default function StockForm({ refreshStocks }: StockFormProps) {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:8080/api/stocks", formData);
+      await axios.post("http://localhost:8081/api/stocks", formData);
       setFormData({ stockName: "", ticker: "", quantity: 1, buyPrice: 0 });
       refreshStocks();
     } catch (error) {

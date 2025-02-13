@@ -1,2 +1,5 @@
+com\example\portfolio\service\StockService.class
+com\example\portfolio\controller\StockController.class
 com\example\portfolio\model\Stock.class
 com\example\portfolio\PortfolioTrackerApplication.class
+com\example\portfolio\repository\StockRepository.class
