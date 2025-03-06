@@ -25,6 +25,12 @@ public class StockController {
     private static final String API_URL = "https://finnhub.io/api/v1/quote?symbol={symbol}&token={apiKey}";
     private static final String API_KEY = "";
 
+    // Welcome message moved to a separate endpoint
+    @GetMapping("/home")
+    public String home() {
+        return "Welcome to the Portfolio Tracker!";
+    }
+
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Stock addStock(@RequestBody Stock stock) {
@@ -42,9 +48,9 @@ public class StockController {
         stockService.deleteStock(id);
     }
 
-    @GetMapping
+    // Fetch all stocks without conflicting with "/api/stocks/home"
+    @GetMapping("/all")
     public List<Stock> getAllStocks() {
-
         return stockService.getAllStocks();
     }
 
@@ -58,11 +64,8 @@ public class StockController {
                         .retrieve()
                         .bodyToMono(Map.class)
                         .map(response -> {
-
                             Object currentPrice = response.get("c");
-
-                            double price = currentPrice != null ? Double.parseDouble(currentPrice.toString()) : 0.0;
-                            return price;
+                            return currentPrice != null ? Double.parseDouble(currentPrice.toString()) : 0.0;
                         })
                         .onErrorReturn(0.0))
                 .collect(Collectors.toList());
@@ -71,7 +74,6 @@ public class StockController {
             double totalValue = 0.0;
             for (int i = 0; i < stocks.size(); i++) {
                 double price = (double) prices[i];
-
                 totalValue += price * stocks.get(i).getQuantity();
             }
 
