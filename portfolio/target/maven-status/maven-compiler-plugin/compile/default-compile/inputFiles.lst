@@ -1,5 +1,7 @@
 D:\Projects\SpringBoot\portfolio-tracker\portfolio\src\main\java\com\example\portfolio\model\Stock.java
 D:\Projects\SpringBoot\portfolio-tracker\portfolio\src\main\java\com\example\portfolio\PortfolioTrackerApplication.java
+D:\Projects\SpringBoot\portfolio-tracker\portfolio\src\main\java\com\example\portfolio\model\FinnhubQuote.java
 D:\Projects\SpringBoot\portfolio-tracker\portfolio\src\main\java\com\example\portfolio\controller\StockController.java
 D:\Projects\SpringBoot\portfolio-tracker\portfolio\src\main\java\com\example\portfolio\repository\StockRepository.java
+D:\Projects\SpringBoot\portfolio-tracker\portfolio\src\main\java\com\example\portfolio\config\FinnhubConfig.java
 D:\Projects\SpringBoot\portfolio-tracker\portfolio\src\main\java\com\example\portfolio\service\StockService.java
