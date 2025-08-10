@@ -1,0 +1,9 @@
+@import "tailwindcss";
+
+:root { --ring: 255 255 255; }
+html { scroll-behavior: smooth; }
+::selection { background: rgba(99,102,241,.35); }
+
+@layer utilities {
+  .glass { @apply bg-white/5 backdrop-blur-xl border border-white/10 shadow-xl; }
+}
