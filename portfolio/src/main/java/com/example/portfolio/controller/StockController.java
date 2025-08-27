@@ -15,6 +15,8 @@ import org.springframework.http.ResponseEntity;
 import com.example.portfolio.DTO.RegisterUser;
 import com.example.portfolio.DTO.LoginUser;
 import com.example.portfolio.DTO.FinnhubSearchResponse;
+import com.example.portfolio.DTO.MarketStatus;
+import com.example.portfolio.DTO.StockQuote;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -41,6 +43,17 @@ public class StockController {
             @RequestParam(name = "query") String query,
             @RequestParam(name = "exchange", defaultValue = "US") String exchange) {
         return stockService.searchStocks(query, exchange);
+    }
+
+    @GetMapping("/market-status")
+    public MarketStatus getMarketStatus(
+            @RequestParam(name = "exchange", defaultValue = "US") String exchange) {
+        return stockService.getMarketStatus(exchange);
+    }
+
+    @GetMapping("/quote")
+    public StockQuote getStockQuote(@RequestParam(name = "symbol") String symbol) {
+        return stockService.getStockQuote(symbol);
     }
 
 }

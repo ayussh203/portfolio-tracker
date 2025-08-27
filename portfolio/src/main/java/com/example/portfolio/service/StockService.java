@@ -8,6 +8,9 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 
 import com.example.portfolio.DTO.FinnhubSearchResponse;
+import com.example.portfolio.DTO.MarketStatus;
+import com.example.portfolio.DTO.StockQuote;
+
 
 import java.util.List;
 
@@ -29,5 +32,16 @@ public class StockService {
                 "&exchange=" + exchange +
                 "&token=" + API_KEY;
         return restTemplate.getForObject(url, FinnhubSearchResponse.class);
+    }
+
+    public MarketStatus getMarketStatus(String exchange) {
+        String url = "https://finnhub.io/api/v1/stock/market-status?exchange=" + exchange +
+                "&token=" + API_KEY;
+        return restTemplate.getForObject(url, MarketStatus.class);
+    }
+
+    public StockQuote getStockQuote(String symbol) {
+        String url = "https://finnhub.io/api/v1/quote?symbol=" + symbol + "&token=" + API_KEY;
+        return restTemplate.getForObject(url, StockQuote.class);
     }
 }
